@@ -1,0 +1,67 @@
+Implement Stack using Linked List 
+
+Example 1:
+
+Input: 
+push(2)
+push(3)
+pop()
+push(4) 
+pop()
+Output: 3, 4
+Explanation: 
+push(2)    the stack will be {2}
+push(3)    the stack will be {2 3}
+pop()      poped element will be 3,
+           the stack will be {2}
+push(4)    the stack will be {2 4}
+pop()      poped element will be 4
+
+Solution -->
+
+/*
+The structure of the node of the stack is
+class StackNode
+{
+    int data;
+    StackNode next;
+    StackNode(int a)
+    {
+       data = a;
+       next = null;
+    }
+}
+*/
+class MyStack {
+
+    // Note that top is by default null
+    // in Java
+    StackNode top;
+
+    void push(int a) {
+        
+        if(top==null){
+            top = new StackNode(a);
+        }else{
+            StackNode temp = new StackNode(a);
+           temp.next  = top;
+           top = temp;
+            
+        }
+    }
+    int pop() {
+        // Add your code here
+        StackNode temp = top;
+        if(temp==null)return -1;
+        else{
+            temp = temp.next;
+            int r = top.data;
+            top = temp;
+            return r;
+        }
+    }
+}
+
+
+Expected Time Complexity: O(1) for both push() and pop().
+Expected Auxiliary Space: O(1) for both push() and pop().
