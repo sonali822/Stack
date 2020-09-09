@@ -1,0 +1,54 @@
+Implement stack using array 
+Input: 
+push(2)
+push(3)
+pop()
+push(4) 
+pop()
+Output: 3, 4
+Explanation: 
+push(2)    the stack will be {2}
+push(3)    the stack will be {2 3}
+pop()      poped element will be 3,
+           the stack will be {2}
+push(4)    the stack will be {2 4}
+pop()      poped element will be 4
+Solution -->
+
+class MyStack{
+
+   int top;
+   int arr[] = new int[1000];
+
+    MyStack()
+	{
+		top = -1;
+	}
+	
+	/* The method push to push element into the stack */
+    void push(int a)
+	{
+		top += 1; //adding one to total elements
+		int max_position = top; //getting index where new element should be inserted
+		arr[max_position] = a; //adding element to top
+		return;
+	} 
+		
+     /*The method pop which return the element poped out of the stack*/
+	int pop()
+	{
+		if (top == -1) { //-1 equals no elements
+		    return -1;
+		} else {
+		    int max_to_return = top; //index of top element
+		    int to_return = arr[max_to_return]; //getting element at top
+		    top -= 1;  //decreasing by one the number signaling the total of elements...element still exists in array, it is not deleted
+		    return to_return; //returning element at top
+		}
+	} 
+}
+
+
+
+Expected Time Complexity : O(1) for both push() and pop().
+Expected Auixilliary Space : O(1) for both push() and pop().
