@@ -1,1 +1,62 @@
+Parenthesis Checker 
+Given an expression string x. Examine whether the pairs and the orders of “{“,”}”,”(“,”)”,”[“,”]” are correct in exp.
+For example, the function should return 'true' for exp = “[()]{}{[()()]()}” and 'false' for exp = “[(])”.
+
+Example 1:
+
+Input:
+{([])}
+
+Output: 
+true
+
+Explanation: 
+{ ( [ ] ) }. Same colored brackets can form 
+balaced pairs, with 0 number of 
+unbalanced bracket.
+
+Your Task:
+This is a function problem. You only need to complete the function ispar() that takes a string as a parameter and returns a boolean value true if brackets are balanced else returns false. The printing is done automatically by the driver code.
+
+Expected Time Complexity: O(|x|)
+Expected Auixilliary Space: O(|x|)
+
+class Parenthesis
+{
+    static boolean cmp(char b, char c)
+    {
+        // compare to check if same pair of brackets exists
+        if(b=='{' && c=='}')
+            return true;
+        else if(b=='[' && c==']')
+            return true;
+        else if(b=='(' && c==')')
+            return true;
+        return false;
+    }
+    
+    // Function to check if string is having pair of brackets
+    static boolean ispar(String x)
+    {
+        Stack<Character> s = new Stack<>();
+        
+        // iterating over the characters
+        for(int i=0;i<x.length();i++)
+        {
+            if(x.charAt(i)=='[' || x.charAt(i)=='{' || x.charAt(i)=='(') // push for all open brackets
+                s.push(x.charAt(i));
+            else if(x.charAt(i)==']' || x.charAt(i)=='}' || x.charAt(i)==')') // test for all closed brackets
+            {
+                if(s.isEmpty() == true || !cmp(s.peek(),x.charAt(i))) // if cmp returns false, brackets are not balanced
+                    return false;
+                else
+                    s.pop();
+            }
+        }
+        if(s.isEmpty() == true)
+            return true;
+        else
+            return false;
+    }
+}
 
